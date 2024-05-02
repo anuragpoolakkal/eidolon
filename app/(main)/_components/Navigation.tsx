@@ -5,7 +5,8 @@ import { ChevronsLeft, MenuIcon } from "lucide-react";
 import { useParams, usePathname } from "next/navigation";
 import { ElementRef, useRef, useState, useEffect } from "react";
 import { useMediaQuery } from "usehooks-ts";
-import Navbar from "./Navbar";
+import Navbar from "./navbar";
+import UserItem from "./user-item";
 
 export const Navigation = () => {
 	const isMobile = useMediaQuery("(max-width: 768px");
@@ -104,6 +105,9 @@ export const Navigation = () => {
 					)}
 				>
 					<ChevronsLeft className="h-6 w-6" />
+				</div>
+				<div>
+					<UserItem />
 				</div>
 				<div
 					onMouseDown={handleMouseDown}
