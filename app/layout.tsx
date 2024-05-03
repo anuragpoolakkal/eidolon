@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "@/components//providers/theme-provider";
 import "./globals.css";
 import { ConvexClientProvider } from "@/components/providers/convex-provider";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,7 +32,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			<head />
 			<body>
 				<ConvexClientProvider>
-					<ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+					<ThemeProvider
+						attribute="class"
+						defaultTheme="light"
+						enableSystem
+						disableTransitionOnChange
+						storageKey="eidolon-theme"
+					>
+						<Toaster position="bottom-center" />
 						{children}
 					</ThemeProvider>
 				</ConvexClientProvider>
