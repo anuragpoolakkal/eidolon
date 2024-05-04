@@ -1,26 +1,29 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ChevronsLeft, MenuIcon } from "lucide-react";
+import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings } from "lucide-react";
 import { useParams, usePathname } from "next/navigation";
 import { ElementRef, useRef, useState, useEffect } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import Navbar from "./navbar";
 import UserItem from "./user-item";
-import { useQuery } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
+import Item from "./item";
+import { toast } from "sonner";
 
 export const Navigation = () => {
 	const isMobile = useMediaQuery("(max-width: 768px");
 	const pathname = usePathname();
 	const params = useParams();
 	const documents = useQuery(api.documents.get);
+	const create = useMutation(api.documents.create);
 
 	const isResizingRef = useRef(false);
 	const sidebarRef = useRef<ElementRef<"aside">>(null);
 	const navbarRef = useRef<ElementRef<"div">>(null);
 	const [isResetting, setIsResetting] = useState(false);
-	const [isCollapsed, setIsCollapsed] = useState(false);
+	const [isCollapsed, setIsCollapsed] = useState(isMobile);
 
 	useEffect(() => {
 		if (isMobile) {
@@ -85,7 +88,25 @@ export const Navigation = () => {
 		if (sidebarRef.current && navbarRef.current) {
 			setIsCollapsed(true);
 			setIsResetting(true);
+
+			sidebarRef.current.style.width = "0";
+			navbarRef.current.style.setProperty("width", "100%");
+			navbarRef.current.style.setProperty("left", "0");
+
+			setTimeout(() => {
+				setIsResetting(false);
+			}, 300);
 		}
+	};
+
+	const handleCreate = () => {
+		const promise = create({ title: "Untitled " });
+
+		toast.promise(promise, {
+			loading: "Creating a new note...",
+			success: "New note created",
+			error: "Failed to create a new note!",
+		});
 	};
 
 	return (
@@ -103,7 +124,6 @@ export const Navigation = () => {
 					onClick={collapse}
 					className={cn(
 						"h-6 w-6 text-muted-foreground rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600 absolute top-3 right-2 opacity-0 group-hover/sidebar:opacity-100 transition",
-						isResetting && "transition-all duration-300 ease-in-out",
 						isMobile && "opacity-100"
 					)}
 				>
@@ -111,6 +131,9 @@ export const Navigation = () => {
 				</div>
 				<div>
 					<UserItem />
+					<Item label="Search" icon={Search} onClick={() => {}} isSearch />
+					<Item label="Settings" icon={Settings} onClick={() => {}} />
+					<Item onClick={handleCreate} label="New page" icon={PlusCircle} />
 				</div>
 				<div>{documents?.map((document: any) => <p key={document._id}>{document.title}</p>)}</div>
 				<div
@@ -128,7 +151,7 @@ export const Navigation = () => {
 				)}
 			>
 				{!!params.documentId ? (
-					<Navbar isCollapsed={isCollapsed} isResetWidth={resetWidth} />
+					<Navbar isCollapsed={isCollapsed} onResetWidth={resetWidth} />
 				) : (
 					<nav className="bg-transparent px-3 py-2 w-full">
 						{isCollapsed && (
