@@ -15,6 +15,7 @@ import { useUser } from "@clerk/clerk-react";
 import { useMutation } from "convex/react";
 import { ChevronDown, ChevronRight, LucideIcon, MoreHorizontal, Plus, Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useMediaQuery } from "usehooks-ts";
 import { toast } from "sonner";
 
 interface ItemProps {
@@ -46,6 +47,8 @@ export const Item = ({
 	const router = useRouter();
 	const create = useMutation(api.documents.create);
 	const archive = useMutation(api.documents.archive);
+
+	const isMobile = useMediaQuery("(max-width: 768px");
 
 	const handleExpand = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		event.stopPropagation();
@@ -110,7 +113,12 @@ export const Item = ({
 			)}
 			<span className="truncate">{label}</span>
 			{isSearch && (
-				<kbd className="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+				<kbd
+					className={cn(
+						"ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100",
+						isMobile && "opacity-0"
+					)}
+				>
 					<span className="text-xs">⌘</span>K
 				</kbd>
 			)}
@@ -120,7 +128,10 @@ export const Item = ({
 						<DropdownMenuTrigger onClick={(e) => e.stopPropagation()} asChild>
 							<div
 								role="button"
-								className="text-muted-foreground rounded-sm opacity-0 group-hover:opacity-100 h-full ml-auto hover:bg-neutral-300 dark:hover:bg-neutral-600"
+								className={cn(
+									"text-muted-foreground rounded-sm opacity-0 group-hover:opacity-100 h-full ml-auto hover:bg-neutral-300 dark:hover:bg-neutral-600",
+									isMobile && "opacity-100"
+								)}
 							>
 								<MoreHorizontal className="h-4 w-4 text-muted-foreground" />
 							</div>
@@ -137,7 +148,10 @@ export const Item = ({
 					<div
 						role="button"
 						onClick={onCreate}
-						className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600"
+						className={cn(
+							"opacity-0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600",
+							isMobile && "opacity-100"
+						)}
 					>
 						<Plus className="text-muted-foreground" />
 					</div>

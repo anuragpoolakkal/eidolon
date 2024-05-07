@@ -5,7 +5,6 @@ interface NavbarProps {
 	onResetWidth: () => void;
 }
 
-const Navbar = ({ isCollapsed, onResetWidth }: NavbarProps) => {
+export const Navbar = ({ isCollapsed, onResetWidth }: NavbarProps) => {
 	return <div>Navbar</div>;
 };
-export default Navbar;

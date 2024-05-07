@@ -5,8 +5,8 @@ import { ChevronsLeft, MenuIcon, Plus, PlusCircle, Search, Settings } from "luci
 import { useParams, usePathname } from "next/navigation";
 import { ElementRef, useRef, useState, useEffect } from "react";
 import { useMediaQuery } from "usehooks-ts";
-import Navbar from "./navbar";
-import UserItem from "./user-item";
+import { Navbar } from "./navbar";
+import { UserItem } from "./user-item";
 import { useMutation, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Item } from "./item";
