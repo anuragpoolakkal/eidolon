@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings } from "lucide-react";
+import { ChevronsLeft, MenuIcon, Plus, PlusCircle, Search, Settings } from "lucide-react";
 import { useParams, usePathname } from "next/navigation";
 import { ElementRef, useRef, useState, useEffect } from "react";
 import { useMediaQuery } from "usehooks-ts";
@@ -31,6 +31,7 @@ export const Navigation = () => {
 		} else {
 			resetWidth();
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isMobile]);
 
 	useEffect(() => {
@@ -137,6 +138,7 @@ export const Navigation = () => {
 				</div>
 				<div>
 					<DocumentList />
+					<Item onClick={handleCreate} icon={Plus} label="Add a page" />
 				</div>
 				<div
 					onMouseDown={handleMouseDown}
