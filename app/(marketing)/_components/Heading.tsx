@@ -7,7 +7,7 @@ import { useConvexAuth } from "convex/react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-const Heading = () => {
+export const Heading = () => {
 	const { isAuthenticated, isLoading } = useConvexAuth();
 	return (
 		<div className="max-w-3xl space-y-4">
@@ -42,4 +42,3 @@ const Heading = () => {
 		</div>
 	);
 };
-export default Heading;
