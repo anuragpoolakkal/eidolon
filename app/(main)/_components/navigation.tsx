@@ -1,17 +1,19 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ChevronsLeft, MenuIcon, Plus, PlusCircle, Search, Settings } from "lucide-react";
+import { ChevronsLeft, MenuIcon, Plus, PlusCircle, Search, Settings, Trash } from "lucide-react";
 import { useParams, usePathname } from "next/navigation";
 import { ElementRef, useRef, useState, useEffect } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { Navbar } from "./navbar";
 import { UserItem } from "./user-item";
-import { useMutation, useQuery } from "convex/react";
+import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Item } from "./item";
 import { toast } from "sonner";
 import { DocumentList } from "./document-list";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { TrashBox } from "./trash-box";
 
 export const Navigation = () => {
 	const isMobile = useMediaQuery("(max-width: 768px");
@@ -139,6 +141,14 @@ export const Navigation = () => {
 				<div>
 					<DocumentList />
 					<Item onClick={handleCreate} icon={Plus} label="Add a page" />
+					<Popover>
+						<PopoverTrigger className="w-full mt-4">
+							<Item icon={Trash} label="Trash" />
+						</PopoverTrigger>
+						<PopoverContent className="p-0 w-72" side={isMobile ? "bottom" : "right"}>
+							<TrashBox />
+						</PopoverContent>
+					</Popover>
 				</div>
 				<div
 					onMouseDown={handleMouseDown}
