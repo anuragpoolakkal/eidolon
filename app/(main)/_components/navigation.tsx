@@ -7,6 +7,7 @@ import { ElementRef, useRef, useState, useEffect } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { Navbar } from "./navbar";
 import { UserItem } from "./user-item";
+import { useSearch } from "@/hooks/use-search";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Item } from "./item";
@@ -14,12 +15,15 @@ import { toast } from "sonner";
 import { DocumentList } from "./document-list";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { TrashBox } from "./trash-box";
+import { useSettings } from "@/hooks/use-settings";
 
 export const Navigation = () => {
 	const isMobile = useMediaQuery("(max-width: 768px");
 	const pathname = usePathname();
 	const params = useParams();
 	const create = useMutation(api.documents.create);
+	const settings = useSettings();
+	const search = useSearch();
 
 	const isResizingRef = useRef(false);
 	const sidebarRef = useRef<ElementRef<"aside">>(null);
@@ -134,8 +138,8 @@ export const Navigation = () => {
 				</div>
 				<div>
 					<UserItem />
-					<Item label="Search" icon={Search} onClick={() => {}} isSearch />
-					<Item label="Settings" icon={Settings} onClick={() => {}} />
+					<Item label="Search" icon={Search} onClick={search.onOpen} isSearch />
+					<Item label="Settings" icon={Settings} onClick={settings.onOpen} />
 					<Item onClick={handleCreate} label="New page" icon={PlusCircle} />
 				</div>
 				<div>
