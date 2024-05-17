@@ -27,7 +27,7 @@ export const getSidbar = query({
 export const create = mutation({
 	args: {
 		title: v.string(),
-		parentDocuemnt: v.optional(v.id("documents")),
+		parentDocument: v.optional(v.id("documents")),
 	},
 	handler: async (ctx, args) => {
 		const identity = await ctx.auth.getUserIdentity();
@@ -40,7 +40,7 @@ export const create = mutation({
 
 		const document = await ctx.db.insert("documents", {
 			title: args.title,
-			parentDocument: args.parentDocuemnt,
+			parentDocument: args.parentDocument,
 			userId,
 			isArchived: false,
 			isPublished: false,
