@@ -3,10 +3,10 @@
 import useScrollTop from "@/hooks/use-scroll-top";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { ModeToggle } from "@/components/mode-toggle";
+import { ModeToggle } from "@/components/ui/mode-toggle";
 import { useConvexAuth } from "convex/react";
 import { SignInButton, UserButton } from "@clerk/clerk-react";
-import { Spinner } from "@/components/spinner";
+import { Spinner } from "@/components/ui/spinner";
 import Link from "next/link";
 import { Logo } from "./logo";
 
