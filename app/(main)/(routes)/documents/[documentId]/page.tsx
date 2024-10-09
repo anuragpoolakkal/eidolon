@@ -1,8 +1,8 @@
 "use client";
 
-import { Cover } from "@/components/cover";
-import { Editor } from "@/components/editor";
-import { Toolbar } from "@/components/toolbar";
+import { Cover } from "@/components/Cover";
+import { Editor } from "@/components/Editor";
+import { Toolbar } from "@/components/Toolbar";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { useMutation, useQuery } from "convex/react";

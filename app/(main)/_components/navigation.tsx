@@ -7,7 +7,7 @@ import { ElementRef, useRef, useState, useEffect } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { Navbar } from "./navbar";
 import { UserItem } from "./user-item";
-import { useSearch } from "@/hooks/use-search";
+import { useSearch } from "@/hooks/useSearch";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Item } from "./item";
@@ -15,7 +15,7 @@ import { toast } from "sonner";
 import { DocumentList } from "./document-list";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { TrashBox } from "./trash-box";
-import { useSettings } from "@/hooks/use-settings";
+import { useSettings } from "@/hooks/useSettings";
 
 export const Navigation = () => {
 	const isMobile = useMediaQuery("(max-width: 768px");

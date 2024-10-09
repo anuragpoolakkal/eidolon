@@ -8,8 +8,8 @@ import TextareaAutoSize from "react-textarea-autosize";
 import { Doc } from "@/convex/_generated/dataModel";
 import { Button } from "./ui/button";
 import { api } from "@/convex/_generated/api";
-import { IconPicker } from "./icon-picker";
-import { useCoverImage } from "@/hooks/use-cover-image";
+import { IconPicker } from "./IconPicker";
+import { useCoverImage } from "@/hooks/useCoverImage";
 
 interface ToolbarProps {
 	initialData: Doc<"documents">;
