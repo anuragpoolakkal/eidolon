@@ -3,7 +3,7 @@
 import { useMutation } from "convex/react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { Check, Copy, Globe } from "lucide-react";
+import { Check, Copy, Globe, Rss } from "lucide-react";
 
 import { Doc } from "@/convex/_generated/dataModel";
 import {
@@ -71,12 +71,15 @@ const Publish = ({ initialData }: PublishProps) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button size="sm" variant="ghost">
-          Publish
-          {initialData.isPublished && (
-            <Globe className="text-sky-500 h-4 w-4 ml-2" />
-          )}
-        </Button>
+      <Button size="sm" variant="ghost">
+					{initialData.isPublished ? (
+						<>
+							Published <Rss className=" h-4 w-4 ml-2" />
+						</>
+					) : (
+						"Publish"
+					)}
+				</Button>
       </PopoverTrigger>
       <PopoverContent className="w-72" align="end" alignOffset={8} forceMount>
         {initialData.isPublished ? (
