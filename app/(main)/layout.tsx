@@ -9,28 +9,28 @@ import { SearchCommand } from "@/components/SearchCommand";
 import Navigation from "./_components/Navigation";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
-  const { isAuthenticated, isLoading } = useConvexAuth();
+	const { isAuthenticated, isLoading } = useConvexAuth();
 
-  if (isLoading) {
-    return (
-      <div className="h-full flex items-center justify-center">
-        <Spinner size="lg" />
-      </div>
-    );
-  }
+	if (isLoading) {
+		return (
+			<div className="h-full flex items-center justify-center">
+				<Spinner size="lg" />
+			</div>
+		);
+	}
 
-  if (!isAuthenticated) {
-    redirect("/");
-  }
+	if (!isAuthenticated) {
+		redirect("/");
+	}
 
-  return (
-    <div className="h-full flex dark:bg-[#1F1F1F]">
-      <Navigation />
-      <main className="h-full flex-1 overflow-y-auto">
-        <SearchCommand />
-        {children}
-      </main>
-    </div>
-  );
+	return (
+		<div className="h-full flex dark:bg-[#1F1F1F]">
+			<Navigation />
+			<main className="h-full flex-1 overflow-y-auto">
+				<SearchCommand />
+				{children}
+			</main>
+		</div>
+	);
 };
 export default MainLayout;
