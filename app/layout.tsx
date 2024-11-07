@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
 	title: "Eidolon",
-	description: "Your connected workspace for wiki, docs & projects",
+	description: "A Next13 Notion Clone",
 	icons: {
 		icon: [
 			{

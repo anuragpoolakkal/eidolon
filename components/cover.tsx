@@ -14,53 +14,64 @@ import { useEdgeStore } from "@/lib/edgestore";
 import { Skeleton } from "./ui/skeleton";
 
 interface CoverImageProps {
-	url?: string;
-	preview?: boolean;
+  url?: string;
+  preview?: boolean;
 }
 
 const Cover = ({ url, preview }: CoverImageProps) => {
-	const { edgestore } = useEdgeStore();
-	const params = useParams();
-	const coverImage = useCoverImage();
-	const removeCoverImage = useMutation(api.documents.removeCoverImage);
+  const { edgestore } = useEdgeStore();
+  const params = useParams();
+  const coverImage = useCoverImage();
+  const removeCoverImage = useMutation(api.documents.removeCoverImage);
 
-	const onRemove = async () => {
-		if (url) {
-			await edgestore.publicFiles.delete({
-				url: url,
-			});
-		}
-		removeCoverImage({
-			id: params.documentId as Id<"documents">,
-		});
-	};
+  const onRemove = async () => {
+    if (url) {
+      await edgestore.publicFiles.delete({
+        url: url,
+      });
+    }
+    removeCoverImage({
+      id: params.documentId as Id<"documents">,
+    });
+  };
 
-	return (
-		<div className={cn("relative w-full h-[35vh] group", !url && "h-[12vh]", url && "bg-muted")}>
-			{!!url && <Image src={url} alt="Cover" fill className="object-cover" />}
-			{url && !preview && (
-				<div className="opacity-0 group-hover:opacity-100 absolute bottom-5 right-5 flex items-center gap-x-2">
-					<Button
-						onClick={() => coverImage.onReplace(url)}
-						className="text-muted-foreground text-xs"
-						variant="outline"
-						size="sm"
-					>
-						<ImageIcon className="h-4 w-4 mr-2" />
-						Change cover
-					</Button>
+  return (
+    <div
+      className={cn(
+        "relative w-full h-[35vh] group",
+        !url && "h-[12vh]",
+        url && "bg-muted"
+      )}
+    >
+      {!!url && <Image src={url} alt="Cover" fill className="object-cover" />}
+      {url && !preview && (
+        <div className="opacity-0 group-hover:opacity-100 absolute bottom-5 right-5 flex items-center gap-x-2">
+          <Button
+            onClick={() => coverImage.onReplace(url)}
+            className="text-muted-foreground text-xs"
+            variant="outline"
+            size="sm"
+          >
+            <ImageIcon className="h-4 w-4 mr-2" />
+            Change cover
+          </Button>
 
-					<Button onClick={onRemove} className="text-muted-foreground text-xs" variant="outline" size="sm">
-						<X className="h-4 w-4 mr-2" />
-						Remove
-					</Button>
-				</div>
-			)}
-		</div>
-	);
+          <Button
+            onClick={onRemove}
+            className="text-muted-foreground text-xs"
+            variant="outline"
+            size="sm"
+          >
+            <X className="h-4 w-4 mr-2" />
+            Remove
+          </Button>
+        </div>
+      )}
+    </div>
+  );
 };
 export default Cover;
 
 Cover.Skeleton = function CoverSkeleton() {
-	return <Skeleton className="w-full h-[12vh]" />;
+  return <Skeleton className="w-full h-[12vh]" />;
 };
