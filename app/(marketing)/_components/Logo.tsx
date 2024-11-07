@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const font = Poppins({ subsets: ["latin"], weight: ["400", "600"] });
 
-export const Logo = () => {
+const Logo = () => {
 	return (
 		<div className="hidden md:flex items-center gap-x-2">
 			<Image src="/eidolon-transparent.png" height="40" width="40" alt="Logo" className="dark:hidden" />
@@ -13,3 +13,5 @@ export const Logo = () => {
 		</div>
 	);
 };
+
+export default Logo;
