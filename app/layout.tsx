@@ -13,21 +13,21 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Eidolon",
-  description: "A Next13 Notion Clone",
+  description: "Your connected workspace for wiki, docs & projects",
   icons: {
-    icon: [
-      {
-        media: "(prefers-color-scheme: light)",
-        url: "/logo.svg",
-        href: "/logo.svg",
-      },
-      {
-        media: "(prefers-color-scheme: dark)",
-        url: "/logo-dark.svg",
-        href: "/logo-dark.svg",
-      },
-    ],
-  },
+		icon: [
+			{
+				media: "(prefers-color-scheme: light)",
+				url: "/eidolon-logo-transparent.svg",
+				href: "/eidolon-transparent.svg",
+			},
+			{
+				media: "(prefers-color-scheme: dark)",
+				url: "/eidolon-logo-transparent.svg",
+				href: "/eidolon-transparent.svg",
+			},
+		],
+	},
 };
 
 export default function RootLayout({
