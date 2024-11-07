@@ -7,13 +7,13 @@ import { toast } from "sonner";
 import { Id } from "@/convex/_generated/dataModel";
 import { api } from "@/convex/_generated/api";
 import { Button } from "@/components/ui/button";
-import { ConfirmModal } from "@/components/modals/ConfirmModal";
+import ConfirmModal from "@/components/modals/ConfirmModal";
 
 interface BannerProps {
 	documentId: Id<"documents">;
 }
 
-export const Banner = ({ documentId }: BannerProps) => {
+const Banner = ({ documentId }: BannerProps) => {
 	const router = useRouter();
 
 	const remove = useMutation(api.documents.remove);
@@ -65,3 +65,4 @@ export const Banner = ({ documentId }: BannerProps) => {
 		</div>
 	);
 };
+export default Banner;

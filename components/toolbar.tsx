@@ -5,18 +5,19 @@ import { ImageIcon, Smile, X } from "lucide-react";
 import { useMutation } from "convex/react";
 import TextareaAutoSize from "react-textarea-autosize";
 
+import { useCoverImage } from "@/hooks/useCoverImage";
 import { Doc } from "@/convex/_generated/dataModel";
 import { Button } from "./ui/button";
 import { api } from "@/convex/_generated/api";
-import { IconPicker } from "./IconPicker";
-import { useCoverImage } from "@/hooks/useCoverImage";
+
+import IconPicker from "./IconPicker";
 
 interface ToolbarProps {
 	initialData: Doc<"documents">;
 	preview?: boolean;
 }
 
-export const Toolbar = ({ initialData, preview }: ToolbarProps) => {
+const Toolbar = ({ initialData, preview }: ToolbarProps) => {
 	const inputRef = useRef<ElementRef<"textarea">>(null);
 	const [isEditing, setIsEditing] = useState(false);
 	const [value, setValue] = useState(initialData.title);
@@ -97,7 +98,7 @@ export const Toolbar = ({ initialData, preview }: ToolbarProps) => {
 							Add icon
 						</Button>
 					</IconPicker>
-				)}{" "}
+				)}
 				{!initialData.coverImage && !preview && (
 					<Button
 						onClick={coverImage.onOpen}
@@ -130,3 +131,4 @@ export const Toolbar = ({ initialData, preview }: ToolbarProps) => {
 		</div>
 	);
 };
+export default Toolbar;
