@@ -9,6 +9,7 @@ import { useUser } from "@clerk/clerk-react";
 import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "./ui/command";
 import { useSearch } from "@/hooks/useSearch";
 import { api } from "@/convex/_generated/api";
+import { title } from "process";
 
 export const SearchCommand = () => {
 	const { user } = useUser();
@@ -47,7 +48,7 @@ export const SearchCommand = () => {
 
 	return (
 		<CommandDialog open={isOpen} onOpenChange={onClose}>
-			<CommandInput placeholder={`Search ${user?.fullName}'s Eidolon...`} />
+			<CommandInput placeholder={`Search ${user?.fullName}'s Hyper Note...`} />
 			<CommandList>
 				<CommandEmpty>No result found.</CommandEmpty>
 				<CommandGroup heading="Documents">

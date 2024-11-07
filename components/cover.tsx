@@ -17,7 +17,8 @@ interface CoverImageProps {
 	url?: string;
 	preview?: boolean;
 }
-export const Cover = ({ url, preview }: CoverImageProps) => {
+
+const Cover = ({ url, preview }: CoverImageProps) => {
 	const { edgestore } = useEdgeStore();
 	const params = useParams();
 	const coverImage = useCoverImage();
@@ -33,6 +34,7 @@ export const Cover = ({ url, preview }: CoverImageProps) => {
 			id: params.documentId as Id<"documents">,
 		});
 	};
+
 	return (
 		<div className={cn("relative w-full h-[35vh] group", !url && "h-[12vh]", url && "bg-muted")}>
 			{!!url && <Image src={url} alt="Cover" fill className="object-cover" />}
