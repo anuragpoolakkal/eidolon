@@ -1,8 +1,8 @@
 export default {
-  providers: [
-    {
-      domain: "https://warm-kiwi-56.clerk.accounts.dev",
-      applicationID: "convex",
-    },
-  ],
+	providers: [
+		{
+			domain: "https://liked-finch-53.clerk.accounts.dev",
+			applicationID: "convex",
+		},
+	],
 };
